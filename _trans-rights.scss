@@ -1,0 +1,48 @@
+@use "sass:map";
+
+$ease-in-sine: cubic-bezier(0.12, 0, 0.39, 0);
+$ease-out-sine: cubic-bezier(0.61, 1, 0.88, 1);
+$ease-in-out-sine: cubic-bezier(0.37, 0, 0.63, 1);
+
+$ease-in-cubic: cubic-bezier(0.32, 0, 0.67, 0);
+$ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
+$ease-in-out-cubic: cubic-bezier(0.65, 0, 0.35, 1);
+
+$ease-in-quad: cubic-bezier(0.11, 0, 0.5, 0);
+$ease-out-quad: cubic-bezier(0.5, 1, 0.89, 1);
+$ease-in-out-quad: cubic-bezier(0.45, 0, 0.55, 1);
+
+$ease-in-circ: cubic-bezier(0.55, 0, 1, 0.45);
+$ease-out-circ: cubic-bezier(0, 0.55, 0.45, 1);
+$ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+
+@mixin trans($rights: false, $sub: false, $props, $duration: 0.5s, $delay: 0s, $easing: $ease-in-out-cubic) {
+  $properties: ();
+  @if $rights {
+    $duration: map.get($trans-rights, $rights, "duration");
+    $easing: map.get($trans-rights, $rights, "ease");
+    $delay: map.get($trans-rights, $rights, "delay");
+  }
+  @each $prop in $props {
+    $properties: append($properties, $prop $duration $easing $delay, $separator: comma);
+  }
+  @if $sub {
+    $properties: append($properties, $sub, $separator: comma);
+  }
+  transition: $properties;
+}
+@function trans($rights: false, $sub: false, $props, $duration: 0.5s, $delay: 0s, $easing: $ease-in-out-cubic) {
+  $properties: ();
+  @if $rights {
+    $duration: map.get($trans-rights, $rights, "duration");
+    $easing: map.get($trans-rights, $rights, "ease");
+    $delay: map.get($trans-rights, $rights, "delay");
+  }
+  @each $prop in $props {
+    $properties: append($properties, $prop $duration $easing $delay, $separator: comma);
+  }
+  @if $sub {
+    $properties: append($properties, $sub, $separator: comma);
+  }
+  @return $properties;
+}
