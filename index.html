@@ -18,7 +18,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="sassy-trans_og-image.png" />
   <meta property="og:url" content="https://styleeyescreative.com/pages/trans-rights/" />
-  <meta property="og:description" content="A demo page created to celebrate trans rights and demonstrate the power of the trans($rights) SCSS library." />
+  <meta property="og:description" content="A demo page created to celebrate trans rights and demonstrate the trans($rights) SCSS library." />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@EyesForStyle" />
@@ -49,8 +49,8 @@
 
   <main>
     
-    <div class="stripe ftm top"></div>
     <div class="stripe mtf top"></div>
+    <div class="stripe ftm top"></div>
 
     <div class="blahaj one-box"><img class="blahaj one" src="blahaj.svg" alt="Ahoy! It's Blahaj!"></div>
     <img class="blahaj two" src="blahaj.svg" alt="Ahoy! It's Blahaj!">
@@ -72,19 +72,19 @@
       </svg>
     </null-box>
 
-    <div class="stripe ftm bottom"></div>
     <div class="stripe mtf bottom"></div>
+    <div class="stripe ftm bottom"></div>
     <img class="blahaj three" src="blahaj.svg" alt="Ahoy! It's Blahaj!">
   </main>
 
-  <p>Press T to toggle animation states &heartsuit; Made with the <a href="https://github.com/aaron-khroma/trans-rights">trans($rights)</a> SCSS library</p>
+  <p>Press <a href onclick="toggleTrans()">[T]</a> to toggle animation states &heartsuit; Made with the <a href="https://github.com/aaron-khroma/trans-rights">trans($rights)</a> SCSS library</p>
 
   <script> 
 
     function toggleTrans() {
       document.querySelector('main').classList.toggle('traaaaaaannnnnnnnnns');
     }
-    
+
     document.onkeydown = ev => {
       switch (ev.key) {
         case 't':

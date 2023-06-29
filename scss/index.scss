@@ -16,7 +16,7 @@ $three-greets-dur: 1s;
 $text-boing: 0.25s;
 $text-boing-start: 2.5s;
 
-$overshoot-ease: cubic-bezier(.4,1.5,.6,-0.5);
+$wiggle-ease: cubic-bezier(.4,1.5,.6,-0.5);
 
 $trans-rights: (
   "one-leaps": ( // Blahaj one leaps out of the water!
@@ -33,10 +33,10 @@ $trans-rights: (
   ),
   "one-wiggles": ( // Blahaj one leaps out of the water!
     "duration": math.div($one-leaps-dur, 2), 
-    "ease": $overshoot-ease,
+    "ease": $wiggle-ease,
     "delay": math.div($one-leaps-dur, 4)
   ),
-  "one-splashes": ( // One splashes back into the water.
+  "one-falls": ( // One splashes back into the water.
     "duration": math.div($one-leaps-dur, 2), 
     "ease": $ease-in-quad,
     "delay": math.div($one-leaps-dur, 2),
@@ -51,12 +51,12 @@ $trans-rights: (
     "ease": $ease-out-cubic,
     "delay": $three-greets-start,
   ),
-  "text-a": ( 
+  "text-stretch": ( 
     "duration": math.div(3 * $text-boing, 5), 
     "ease": $ease-out-sine,
     "delay": $text-boing-start,
   ),
-  "text-b": ( 
+  "text-return": ( 
     "duration": math.div(2 * $text-boing, 5), 
     "ease": $ease-in-out-sine,
     "delay": $text-boing-start + math.div(3 * $text-boing, 5)
@@ -69,10 +69,10 @@ $y: 0.4;
 .text {
   opacity: 0;
   transform: scale(1 - $x, 1 + $y);
-  @include trans($rights: "text-a", $props: opacity transform);
+  @include trans($rights: "text-stretch", $props: opacity transform);
   h1 {
     transform: scale(1, 1);
-    @include trans($rights: "text-b", $props: transform);
+    @include trans($rights: "text-return", $props: transform);
   }
   .traaaaaaannnnnnnnnns & {
     opacity: 1;
@@ -101,7 +101,7 @@ $y: 0.4;
     transform: translateY(0) ;
     @include trans($rights: "one-leaps", $props: bottom, 
       $sub: trans($rights: "one-moves", $props: left, 
-      $sub: trans($rights: "one-splashes", $props: transform)));
+      $sub: trans($rights: "one-falls", $props: transform)));
   }
   &.one {
     transform: rotate(0deg);
@@ -226,11 +226,11 @@ main {
       bottom: 0;
     }
     &.mtf {
-      height: 20%;
+      height: 40%;
       background-color: $girl-color;
     }
     &.ftm {
-      height: 40%;
+      height: 20%;
       background-color: $boy-color;
     }
   }
@@ -281,7 +281,8 @@ p {
     left: 0;
     top: calc(50vh - 50vw);
     .text h1 {
-      font-size: 6.4vw;
+      font-size: 6vw;
+      line-height: 9vw;
     }
   }
   p {

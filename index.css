@@ -136,11 +136,11 @@ main .stripe.bottom {
   bottom: 0;
 }
 main .stripe.mtf {
-  height: 20%;
+  height: 40%;
   background-color: #F5A9B8;
 }
 main .stripe.ftm {
-  height: 40%;
+  height: 20%;
   background-color: #5BCEFA;
 }
 main .blahaj.one-box, main .blahaj.two, main .blahaj.three {
@@ -182,7 +182,8 @@ p {
     top: calc(50vh - 50vw);
   }
   main .text h1 {
-    font-size: 6.4vw;
+    font-size: 6vw;
+    line-height: 9vw;
   }
   p {
     font-size: 3.5vw;
