@@ -1,0 +1,103 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>trans($rights)</title>
+  <meta name="keywords" content="transgender" />
+  <meta name="description" content="A demo page created to celebrate trans rights and demonstrate the power of the trans($rights) SCSS library." />
+  <meta name="revised" content="June 2023" />
+  <meta name="city" content="San Diego" />
+  <meta name="state" content="CA" />
+  <meta name="country" content="United States of America" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Aaron Clement" />
+  <meta name="theme-color" content="#F5A9B8" />
+
+  <meta property="og:title" content="trans($rights)" />
+  <meta property="og:site_name" content="Style Eyes Creative" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="sassy-trans_og-image.png" />
+  <meta property="og:url" content="https://styleeyescreative.com/pages/trans-rights/" />
+  <meta property="og:description" content="A demo page created to celebrate trans rights and demonstrate the power of the trans($rights) SCSS library." />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@EyesForStyle" />
+  <meta name="twitter:title" content="trans($rights)" />
+  <meta name="twitter:image" content="sassy-trans_twitter-card.png" />
+
+  <link rel="icon" sizes="16x16" type="image/png" href="/favicon.png" />
+  <link rel="icon" sizes="192x192" type="image/png" href="/big-icon.png" />
+  <link rel="mask-icon" href="mask-icon.svg" color="#00AE42">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RQ2J4FW0RD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RQ2J4FW0RD');
+</script>
+
+<body>
+
+  <main>
+    
+    <div class="stripe ftm top"></div>
+    <div class="stripe mtf top"></div>
+
+    <div class="blahaj one-box"><img class="blahaj one" src="blahaj.svg" alt="Ahoy! It's Blahaj!"></div>
+    <img class="blahaj two" src="blahaj.svg" alt="Ahoy! It's Blahaj!">
+
+    <div class="text"><h1>Trans rights are human rights!</h1></div>
+    <null-box>
+      <svg class="heart m" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 120 111.5" style="enable-background:new 0 0 120 111.5;" xml:space="preserve">
+        <path d="M60,111.5c17.9-43.7,60-43.5,60-79.7c0-34.2-45.6-48.1-60-4.5C45.6-16.3,0-2.4,0,31.8C0,68,42.1,67.8,60,111.5z"/>
+      </svg>
+    </null-box>
+    <null-box>
+      <svg class="heart nb" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 120 111.5" style="enable-background:new 0 0 120 111.5;" xml:space="preserve">
+        <path d="M60,111.5c17.9-43.7,60-43.5,60-79.7c0-34.2-45.6-48.1-60-4.5C45.6-16.3,0-2.4,0,31.8C0,68,42.1,67.8,60,111.5z"/>
+      </svg>
+    </null-box>
+    <null-box>
+      <svg class="heart f" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 120 111.5" style="enable-background:new 0 0 120 111.5;" xml:space="preserve">
+        <path d="M60,111.5c17.9-43.7,60-43.5,60-79.7c0-34.2-45.6-48.1-60-4.5C45.6-16.3,0-2.4,0,31.8C0,68,42.1,67.8,60,111.5z"/>
+      </svg>
+    </null-box>
+
+    <div class="stripe ftm bottom"></div>
+    <div class="stripe mtf bottom"></div>
+    <img class="blahaj three" src="blahaj.svg" alt="Ahoy! It's Blahaj!">
+  </main>
+
+  <p>Press T to toggle animation states &heartsuit; Made with the <a href="https://github.com/aaron-khroma/trans-rights">trans($rights)</a> SCSS library</p>
+
+  <script> 
+
+    function toggleTrans() {
+      document.querySelector('main').classList.toggle('traaaaaaannnnnnnnnns');
+    }
+    
+    document.onkeydown = ev => {
+      switch (ev.key) {
+        case 't':
+          toggleTrans()
+          break;
+        default:
+      }
+    };
+
+    setTimeout(toggleTrans, 250);
+
+  </script>
+
+</body>
+
+</html>

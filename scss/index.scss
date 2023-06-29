@@ -1,0 +1,290 @@
+@use "sass:math";
+@import "trans-rights";
+
+$bottom-offset: 20%;
+
+$water-level: -23% + $bottom-offset;
+$one-leaps-dur: 1.5s;
+$one-leaps-height: 65%;
+
+$two-meets-start: 2s;
+$two-meets-dur: 1s;
+
+$three-greets-start: 3s;
+$three-greets-dur: 1s;
+
+$text-boing: 0.25s;
+$text-boing-start: 2.5s;
+
+$overshoot-ease: cubic-bezier(.4,1.5,.6,-0.5);
+
+$trans-rights: (
+  "one-leaps": ( // Blahaj one leaps out of the water!
+    "duration": math.div($one-leaps-dur, 2), 
+    "ease": $ease-out-quad
+  ),
+  "hearts": ( // Blahaj one leaps out of the water!
+    "duration": $one-leaps-dur * 1.5, 
+    "ease": $ease-out-quad
+  ),
+  "one-moves": ( // Blahaj one leaps out of the water!
+    "duration": $one-leaps-dur, 
+    "ease": linear,
+  ),
+  "one-wiggles": ( // Blahaj one leaps out of the water!
+    "duration": math.div($one-leaps-dur, 2), 
+    "ease": $overshoot-ease,
+    "delay": math.div($one-leaps-dur, 4)
+  ),
+  "one-splashes": ( // One splashes back into the water.
+    "duration": math.div($one-leaps-dur, 2), 
+    "ease": $ease-in-quad,
+    "delay": math.div($one-leaps-dur, 2),
+  ),
+  "two-meets": ( // Blahaj two enters from the left.
+    "duration": $two-meets-dur, 
+    "ease": $ease-out-cubic,
+    "delay": $two-meets-start,
+  ),
+  "three-greets": ( // Blahaj three enters from the right.
+    "duration": $three-greets-dur, 
+    "ease": $ease-out-cubic,
+    "delay": $three-greets-start,
+  ),
+  "text-a": ( 
+    "duration": math.div(3 * $text-boing, 5), 
+    "ease": $ease-out-sine,
+    "delay": $text-boing-start,
+  ),
+  "text-b": ( 
+    "duration": math.div(2 * $text-boing, 5), 
+    "ease": $ease-in-out-sine,
+    "delay": $text-boing-start + math.div(3 * $text-boing, 5)
+  ),
+);
+
+$x: 0.1;
+$y: 0.4;
+
+.text {
+  opacity: 0;
+  transform: scale(1 - $x, 1 + $y);
+  @include trans($rights: "text-a", $props: opacity transform);
+  h1 {
+    transform: scale(1, 1);
+    @include trans($rights: "text-b", $props: transform);
+  }
+  .traaaaaaannnnnnnnnns & {
+    opacity: 1;
+    transform: scale(1 + $x, 1 - $y);
+    h1 {
+      transform: scale(math.div(1, 1 + $x), math.div(1, 1 - $y));
+    }
+  }
+}
+
+.heart {
+  bottom: 0;
+  opacity: 1;
+  @include trans($rights: "hearts", $props: bottom opacity);
+  .traaaaaaannnnnnnnnns & {
+    bottom: 600%;
+    opacity: 0;
+  }
+}
+
+.blahaj {
+
+  &.one-box {
+    bottom: $water-level;
+    left: 70%;
+    transform: translateY(0) ;
+    @include trans($rights: "one-leaps", $props: bottom, 
+      $sub: trans($rights: "one-moves", $props: left, 
+      $sub: trans($rights: "one-splashes", $props: transform)));
+  }
+  &.one {
+    transform: rotate(0deg);
+    @include trans($rights: "one-wiggles", $props: transform);
+  }
+  &.two {
+    bottom: -16% + $water-level;
+    left: -25%;
+    transform: scaleX(-1) rotate(-50deg);
+    @include trans($rights: "two-meets", $props: bottom left transform);
+  }
+  &.three {    
+    bottom: -45%;
+    right: -50%;
+    transform: rotate(-60deg);
+    @include trans($rights: "three-greets", $props: bottom right transform);
+  }
+
+  .traaaaaaannnnnnnnnns & {
+    &.one-box {
+      bottom: $one-leaps-height + $water-level - 5%;
+      left: 0%;
+      transform: translateY(2 * $one-leaps-height);
+    }
+    &.one {
+      transform: rotate(-60deg);
+    }
+    &.two {
+      bottom: 27% + $water-level;
+      left: -7%;
+      transform: scaleX(-1) rotate(-30deg);
+    }
+    &.three {    
+      bottom: -25%;
+      right: -35%;
+      transform: rotate(-10deg);
+    }
+  }
+}
+
+$girl-color: #F5A9B8;
+$boy-color: #5BCEFA;
+$gray-line: #CDCDCD;
+$girl-line: #A95365;
+$boy-line: #1C86AE;
+
+body {
+  background-color: gray;
+}
+
+$width: 960px;
+$height: 960px - 48px;
+
+main {
+  background-color: white;
+  width: $width;
+  height: $height;
+  overflow: hidden;
+
+  position: fixed;
+  left: calc(50vw - math.div($width, 2));
+  top: calc(50vh - math.div($height, 2));
+
+  .text {
+    
+    position: relative;
+    top: 1%;
+
+    h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      color: white;
+      letter-spacing: 2px;
+      font-size: 60px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+  }
+
+  null-box {
+    width: 10%;
+    height: 10%;
+    position: absolute;
+    right: 10%;
+    bottom: 31% + $water-level;
+
+    $start-angle: 0deg;
+    $increment: -22.5deg;
+    @for $h from 0 through 2 {
+      &:nth-of-type(#{$h + 1}) {
+        transform: rotate($start-angle + ($increment * $h));
+      }
+    }
+
+    .heart {
+      position: relative;
+      right: 0;
+    }
+    .m path {
+      fill: $boy-color;
+      stroke: $boy-line;
+    }
+    .nb path {
+      fill: white;
+      stroke: $gray-line;
+    }
+    .f path {
+      fill: $girl-color;
+      stroke: $girl-line;
+    }
+  }
+
+  .stripe {
+    width: 200%;
+    position: absolute;
+    right: -50%;
+    filter: brightness(1);
+
+    &.top {
+      top: 0;
+    }
+    &.bottom {
+      bottom: 0;
+    }
+    &.mtf {
+      height: 20%;
+      background-color: $girl-color;
+    }
+    &.ftm {
+      height: 40%;
+      background-color: $boy-color;
+    }
+  }
+
+  .blahaj {
+    &.one-box, &.two, &.three {
+      position: absolute;
+      //mix-blend-mode: luminosity;
+    }
+  }
+
+  img.blahaj {
+    filter: brightness(0.85) saturate(0.9);
+  }
+
+  .blahaj {
+    &.one-box {
+      width: 40%;
+      overflow: visible;
+    }
+    &.one {
+      width: 100%;
+    }
+    &.two {
+      width: 50%;
+    }
+    &.three {
+      width: 75%;
+    }
+  }
+}
+
+p {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.5vw;
+  color: white;
+  text-align: center;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 1px;
+}
+
+@media only screen and (max-width: 960px) {
+  main {
+    width: 100vw;
+    height: 100vw;
+    left: 0;
+    top: calc(50vh - 50vw);
+    .text h1 {
+      font-size: 6.4vw;
+    }
+  }
+  p {
+    font-size: 3.5vw;
+  }
+}
