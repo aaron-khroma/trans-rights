@@ -13,7 +13,7 @@ $two-meets-dur: 1s;
 $three-greets-start: 3s;
 $three-greets-dur: 1s;
 
-$text-boing: 0.25s;
+$text-boing: 0.5s;
 $text-boing-start: 2.5s;
 
 $wiggle-ease: cubic-bezier(.4,1.5,.6,-0.5);
@@ -21,54 +21,54 @@ $wiggle-ease: cubic-bezier(.4,1.5,.6,-0.5);
 $trans-rights: (
   "one-leaps": ( // Blahaj one leaps out of the water!
     "duration": math.div($one-leaps-dur, 2), 
-    "ease": $ease-out-quad
+    "easing": $ease-out-quad
   ),
   "hearts": ( // Blahaj one leaps out of the water!
     "duration": $one-leaps-dur * 1.5, 
-    "ease": $ease-out-quad
+    "easing": $ease-out-quad
   ),
   "one-moves": ( // Blahaj one leaps out of the water!
     "duration": $one-leaps-dur, 
-    "ease": linear,
+    "easing": linear,
   ),
   "one-wiggles": ( // Blahaj one leaps out of the water!
     "duration": math.div($one-leaps-dur, 2), 
-    "ease": $wiggle-ease,
+    "easing": $wiggle-ease,
     "delay": math.div($one-leaps-dur, 4)
   ),
   "one-falls": ( // One splashes back into the water.
     "duration": math.div($one-leaps-dur, 2), 
-    "ease": $ease-in-quad,
+    "easing": $ease-in-quad,
     "delay": math.div($one-leaps-dur, 2),
   ),
   "two-meets": ( // Blahaj two enters from the left.
     "duration": $two-meets-dur, 
-    "ease": $ease-out-cubic,
+    "easing": $ease-out-cubic,
     "delay": $two-meets-start,
   ),
   "three-greets": ( // Blahaj three enters from the right.
     "duration": $three-greets-dur, 
-    "ease": $ease-out-cubic,
+    "easing": $ease-out-cubic,
     "delay": $three-greets-start,
   ),
   "text-stretch": ( 
-    "duration": math.div(3 * $text-boing, 5), 
-    "ease": $ease-out-sine,
+    "duration": math.div(2 * $text-boing, 5), 
+    "easing": $ease-out-sine,
     "delay": $text-boing-start,
   ),
   "text-return": ( 
-    "duration": math.div(2 * $text-boing, 5), 
-    "ease": $ease-in-out-sine,
+    "duration": math.div(3 * $text-boing, 5), 
+    "easing": $ease-in-out-sine,
     "delay": $text-boing-start + math.div(3 * $text-boing, 5)
   ),
 );
 
-$x: 0.1;
-$y: 0.4;
+$x-stretch: 0.1;
+$y-stretch: 0.4;
 
 .text {
   opacity: 0;
-  transform: scale(1 - $x, 1 + $y);
+  transform: scale(1 - $x-stretch, 1 + $y-stretch);
   @include trans($rights: "text-stretch", $props: opacity transform);
   h1 {
     transform: scale(1, 1);
@@ -76,9 +76,9 @@ $y: 0.4;
   }
   .traaaaaaannnnnnnnnns & {
     opacity: 1;
-    transform: scale(1 + $x, 1 - $y);
+    transform: scale(1 + $x-stretch, 1 - $y-stretch);
     h1 {
-      transform: scale(math.div(1, 1 + $x), math.div(1, 1 - $y));
+      transform: scale(math.div(1, 1 + $x-stretch), math.div(1, 1 - $y-stretch));
     }
   }
 }
@@ -265,13 +265,13 @@ main {
 
 p {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.5vw;
+  font-size: min(18px, 1.5vw);
   color: white;
   text-align: center;
   width: 100%;
   position: fixed;
   left: 0;
-  bottom: 1px;
+  bottom: 0;
 }
 
 @media only screen and (max-width: 960px) {
